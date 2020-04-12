@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User {% endblock %}
+
+{% block body %}
+
+ <h1 class="text-center">Profile</h1>
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Username</th>
+                <th>{{ user.username }}</th>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>
+                {% for role in user.roles %}
+                    {% if role == "ROLE_USER" %}
+                    Member
+                    {% elseif role == "ROLE_ADMIN" %}
+                    Administrator
+                    {% endif %}
+                  {% endfor %}
+                </td>
+            </tr>
+            {# <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr> #}
+
+        </tbody>
+    </table>
+                <a href="{{ path('profile_edit_user', {'id': user.id}) }}">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Edit
+                    </button>
+                </a>
+{% endblock %}
+

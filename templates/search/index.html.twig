@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Look for movies!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1>Welcome to the movie search engine</h1>
+    <form action='' method='POST' class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input name="keyword" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Look for a movie..."
+        aria-label="Search">
+    </form>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for movie in movies %}
+      <div class="col mb-4">
+        <div class="card h-100">
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{movie['poster_path']}}" alt="{{movie['title']}}">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!-- Social buttons -->
+          <div class="card-share">
+            <!-- Button action -->
+            <a class="btn-floating btn-action share-toggle ml-auto mr-4 float-right"><i class="fas fa-star"></i></a>
+          </div>
+          <!-- Card content -->
+          <div class="card-body">
+            <!-- Title -->
+            <h4 class="card-title">{{movie['title']}}</h4>
+            <hr>
+            <!-- Text -->
+            <p class="card-text">{{movie['overview']}}</p>
+            {# <button class="btn"></button> #}
+            <a href="{{ path('search_show', {'id': movie['id']}) }}"><button class="btn btn-dark">Read more</button></a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+{% endblock %}

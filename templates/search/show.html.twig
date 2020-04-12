@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{movie['title']}}{% endblock %}
+
+{% block body %}
+{# <div class="container">
+  <h1>{{movie['title']}}</h1>
+  <a class="btn-floating btn-action share-toggle ml-auto mr-4 float-right"><i class="fas fa-star"></i> Add to favorites</a>
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Add to a watchlist
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        Favorites
+      </label>
+    </div>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Add a new watchlist</a>
+  </div>
+</div>
+  <img src="https://image.tmdb.org/t/p/w500{{movie['poster_path']}}" alt="{{movie['title']}}">
+  <p>{{movie['overview']}}</p>
+</div> #}
+
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-lg-5 text-center border-right border-secondery">
+      <img class="img-show" src="https://image.tmdb.org/t/p/w500{{movie['poster_path']}}" alt="{{movie['title']}}">
+    </div>
+    <div class="col-lg-7">
+      <h5>{{movie['title']}}</h5>
+      <p>{{movie['overview']}}</p>
+      <a class="btn-floating btn-action share-toggle ml-auto mr-4 float-right"><i class="fas fa-star"></i> Add to favorites</a>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add to a watchlist
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Favorites
+            </label>
+          </div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Add a new watchlist</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+

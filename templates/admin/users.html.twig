@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users list{% endblock %}
+
+{% block body %}
+    <h1>Users list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  {% for role in user.roles %}
+                    {% if role == "ROLE_USER" %}
+                    Member
+                    {% elseif role == "ROLE_ADMIN" %}
+                    Administrator
+                    {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                <a href="{{ path('admin_show_user', {'id': user.id}) }}">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        show
+                    </button>
+                </a>
+                <a href="{{ path('admin_edit_user', {'id': user.id}) }}">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Edit
+                    </button>
+                </a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+
+        <a href="{{ path('admin_new_user') }}" >
+            <button class="btn btn-lg btn-primary" type="submit">
+                Create New User
+            </button>
+        </a>
+
+    </div>
+{% endblock %}
