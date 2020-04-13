@@ -28,27 +28,29 @@ class UserListController extends AbstractController
 
 
     /**
-     * @Route("/new", name="user_list_new", methods={"GET","POST"})
+     * @Route("/new", name="user_list_new")
      */
-    public function new(Request $request): Response
+    public function new(Request $request)
     {
         $userList = new UserList();
+
         $form = $this->createForm(UserListType::class, $userList);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userList->setCreatedAt(new \DateTime('now'));
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($userList);
-            $entityManager->flush();
-            
+          $this->denyAccessUnlessGranted('ROLE_USER');
+          $userList->setUsers($this->getUser());
+          $userList->setCreatedAt(new \DateTime('now'));
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->persist($userList);
+          $entityManager->flush();
 
-            return $this->redirectToRoute('user_list_index');
+          return $this->redirectToRoute('user_list_index');
         }
 
         return $this->render('user_list/new.html.twig', [
             'user_list' => $userList,
-            'form' => $form->createView(),
+            'listForm' => $form->createView(),
         ]);
     }
 
