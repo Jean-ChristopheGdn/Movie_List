@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\UserList;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,17 +24,8 @@ class UserListType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('users',TextType::class, [
-                'attr'=> [
-                    'class' => 'form-control'
-                ]
-            ])
-            ->add('user_list_movies',TextType::class, [
-                'attr'=> [
-                    'class' => 'form-control'
-                ]
-            ])
-        ;
+            ->add('Create list', SubmitType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
