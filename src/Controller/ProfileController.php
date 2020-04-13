@@ -57,8 +57,7 @@ class ProfileController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('message', 'User edited!');
-        return $this->redirectToRoute('profile_edit_user', array(
-            'id' => $user->getId()));
+        return $this->redirectToRoute('profile_index');
       }
       return $this->render('profile/editprofile.html.twig', [
         'userForm' => $form->createView()
