@@ -14,25 +14,40 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+
+        <div class="fadeIn first">
+          <img src="{{ asset('build/popcorn2.png') }}" id="icon" alt="User Icon" />
+        </div>
+
+        <form>
+          <input type="text" id="login" class="fadeIn second" value="{{ last_username }}" name="email" placeholder="email" required autofocus>
+          <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+          <div class="checkbox mb-3">
+              <label>
+                  <input type="checkbox" name="_remember_me"> Remember me
+              </label>
+          </div>
+          <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+
+      </div>
+    </div>
+
+    {# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-    
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-   
+
+
 
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
-    </button>
+    </button> #}
 </form>
 {% endblock %}

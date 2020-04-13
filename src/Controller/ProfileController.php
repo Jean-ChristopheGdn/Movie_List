@@ -26,7 +26,7 @@ class ProfileController extends AbstractController
      */
     public function index(Request $request, UserInterface $user)
     {
-        
+
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'user' => $user
@@ -57,12 +57,13 @@ class ProfileController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('message', 'User edited!');
-        return $this->redirectToRoute('profile_edit_user');
+        return $this->redirectToRoute('profile_edit_user', array(
+            'id' => $user->getId()));
       }
       return $this->render('profile/editprofile.html.twig', [
         'userForm' => $form->createView()
       ]);
     }
-    
+
 
 }
