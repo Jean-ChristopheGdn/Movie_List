@@ -51,4 +51,26 @@ class SearchController extends AbstractController
           'movie' => $movie
       ]);
     }
+
+    /**
+     * @Route("/genre/{genre_id}/{genre_name}", name="search_by_genre")
+     */
+
+    public function by_genre($genre_id, $genre_name)
+    {
+      $movies = [];
+      if (!empty($genre_id)) {
+        $client = HttpClient::create();
+        $response = $client->request('GET', 'https://api.themoviedb.org/3/discover/movie?api_key=279e70c73121b427dcf04bc30ac9382f&with_genres=' . $genre_id);
+        $content = $response->toArray();
+        $movies = $content['results'];
+      }
+
+      return $this->render('search/index.html.twig', [
+          'controller_name' => 'SearchController',
+          'movies' => $movies,
+          'genre' => $genre_name
+      ]);
+    }
+
 }
