@@ -7,13 +7,16 @@
 <div class="container">
   <div class="jumbotron text-center">
     <h1>Welcome to the movie search engine</h1>
+    <h5>Search by keyword...</h5>
     <form action='' method='POST' class="form-inline d-flex justify-content-center md-form form-sm mt-0">
       <i class="fas fa-search" aria-hidden="true"></i>
       <input name="keyword" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Look for a movie..."
         aria-label="Search">
     </form>
   </div>
-
+  {% if genre is defined %}
+    <h1>Here are the {{genre}} movies!</h1>
+  {% endif %}
   <div class="row row-cols-1 row-cols-md-3">
     {% for movie in movies %}
       <div class="col mb-4">
